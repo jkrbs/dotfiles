@@ -1,0 +1,71 @@
+source ~/.neomutt/colors
+
+## Storage Setup
+set header_cache = ~/.cache/neomutt/
+set message_cachedir = ~/.cache/neomutt/
+set tmpdir = ~/.cache/neomutt/
+set virtual_spoolfile
+
+## Notmuch configuration
+set nm_default_uri = "notmuch:///Users/jakob/.mail"
+virtual-mailboxes "Combined Inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "All Unread Messages" "notmuch://?query=tag:unread"
+virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
+virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+set menu_scroll
+set editor = vim
+set timeout = "5"
+set mail_check = "10"
+set mailcap_path = ~/.neomutt/mailcap
+set date_format="%m/%d %I:%M"
+set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+mono bold bold
+mono underline underline
+mono indicator reverse
+# sidebar
+set mail_check_stats
+set sidebar_visible               # set to "no" to disable sidebar view at startup
+    color sidebar_new yellow default
+    # sidebar bindings
+    bind index J sidebar-prev          # got to previous folder in sidebar
+    bind index K sidebar-next         # got to next folder in sidebar
+    bind index <space> sidebar-open         # open selected folder from sidebar
+
+# Mail editing:
+set include             # the next 3 set's are to
+set edit_headers        # go right to vim and edit through that composition
+set autoedit            # window, rather than mutt giving me 21 questions
+set forward_quote
+set forward_format      = "Fwd: %s"
+
+color index_author	red black ~D
+color index	magenta black ~T
+color index_number blue default
+color index_subject cyan default '.s'
+color index_size green default
+color normal default default
+color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+bind index,pager B sidebar-toggle-visible
+
+bind editor <space> noop
+bind index G last-entry
+bind index d half-down
+bind index u half-up
+bind index D delete-message
+bind index U undelete-message
+bind index F search
+bind index R group-reply
+
+#source ~/.neomutt/gpg.rc
+#set pgp_use_gpg_agent = yes
+
+

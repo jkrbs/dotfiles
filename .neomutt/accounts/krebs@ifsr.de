@@ -1,0 +1,4 @@
+set my_account='ifsr'
+set from='krebs@ifsr.de'
+set my_name='Jakob Krebs'
+source '~/.neomutt/accounts/common'
