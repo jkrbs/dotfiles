@@ -1,0 +1,16 @@
+[database]
+path=.mail
+
+[user]
+name=Jakob Krebs
+primary_email=jakob.krebs@mailbox.tu-dresden.de
+
+[new]
+tags=new
+ignore=/.mbsyncstate/;/.uidvalidity/
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
