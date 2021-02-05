@@ -3,10 +3,10 @@ path=.mail
 
 [user]
 name=Jakob Krebs
-primary_email=jakob.krebs@mailbox.tu-dresden.de
+primary_email=jakob.krebs@mailbox.tu-dresden.de;krebs@ifsr.de
 
 [new]
-tags=new
+tags=new;inbox
 ignore=/.mbsyncstate/;/.uidvalidity/
 
 [search]

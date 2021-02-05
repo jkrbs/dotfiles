@@ -23,3 +23,29 @@ Patterns *
 Create Both
 SyncState *
 
+# ---- ifsr ----
+IMAPAccount ifsr
+Host mail.ifsr.de
+User krebs
+PassCmd "pass 'fsr/ifsr' | head -1"
+SSLType IMAPS
+AuthMechs LOGIN
+# because exchange apparently can't handle parallel accesses:
+PipelineDepth 1
+
+IMAPStore ifsr-remote
+Account ifsr
+
+MaildirStore ifsr-local
+Subfolders Verbatim
+Path ~/.mail/ifsr/
+Inbox ~/.mail/ifsr/Inbox
+
+Channel ifsr
+Master :ifsr-remote:
+Slave :ifsr-local:
+Patterns *
+Create Both
+SyncState *
+
+
