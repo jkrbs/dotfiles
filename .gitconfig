@@ -1,3 +1,5 @@
 [user]
 	email = jakob@krbs.me
 	name = Jakob Krebs
+[init]
+	defaultBranch = main
