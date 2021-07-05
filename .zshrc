@@ -1,7 +1,7 @@
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle :compinstall filename '/home/jakob/.zshrc'
+zstyle :compinstall filename '/Users/jakob/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -74,41 +74,9 @@ DRACULA_GIT_NOLOCK=${DRACULA_GIT_NOLOCK:-$(dracula_test_git_optional_lock)}
 # Status segment {{{
 # arrow is green if last command was successful, red if not, 
 # turns yellow in vi command mode
-PROMPT='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))${DRACULA_ARROW_ICON}'
+
 # }}}
-
-# Time segment {{{
-dracula_time_segment() {
-  if (( DRACULA_DISPLAY_TIME )); then
-    if [[ -z "$TIME_FORMAT" ]]; then
-      TIME_FORMAT=" %-H:%M"
-      
-      # check if locale uses AM and PM
-      if ! locale -ck LC_TIME | grep 'am_pm=";"' > /dev/null; then
-        TIME_FORMAT=" %-I:%M%p"
-      fi
-    fi
-
-    print -P "%D{$TIME_FORMAT}"
-  fi
-}
-
-PROMPT+='%F{green}%B$(dracula_time_segment) '
-# }}}
-
-# User context segment {{{
-dracula_context() {
-  if (( DRACULA_DISPLAY_CONTEXT )); then
-    if [[ -n "${SSH_CONNECTION-}${SSH_CLIENT-}${SSH_TTY-}" ]] || (( EUID == 0 )); then
-      echo '%n@%m '
-    else
-      echo '%n '
-    fi
-  fi
-}
-
-PROMPT+='%F{magenta}%B$(dracula_context)'
-# }}}
+PROMPT='%n@%m: '
 
 # Directory segment {{{
 PROMPT+='%F{blue}%B%c '
@@ -186,6 +154,18 @@ function zle-keymap-select zle-line-init {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+PROMPT+='%(1V:%F{yellow}:%(?:%F{green}:%F{red}))${DRACULA_ARROW_ICON}%F '
+
 # Ensure effects are reset
 PROMPT+='%f%b'
 
+
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:/usr/local/opt/llvm/bin/
+alias e=emacsclient -n
+alias v=vim
+alias s=subl
+alias ll=ls -lah
+export ANSIBLE_NOCOWS=1
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
