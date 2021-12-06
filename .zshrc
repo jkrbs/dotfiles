@@ -1,7 +1,7 @@
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle :compinstall filename '/Users/jakob/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -27,7 +27,7 @@ bindkey -e
 # @maintainer Aidan Williams <aidanwillie0317@protonmail.com>
 
 # Initialization {{{
-source /home/.zsh/lib/async.zsh
+source ~/.zsh/lib/async.zsh
 autoload -Uz add-zsh-hook
 setopt PROMPT_SUBST
 async_init
