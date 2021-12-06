@@ -27,7 +27,7 @@ bindkey -e
 # @maintainer Aidan Williams <aidanwillie0317@protonmail.com>
 
 # Initialization {{{
-source ${0:A:h}/.zsh/lib/async.zsh
+source /home/.zsh/lib/async.zsh
 autoload -Uz add-zsh-hook
 setopt PROMPT_SUBST
 async_init
@@ -162,10 +162,11 @@ PROMPT+='%f%b'
 
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:/usr/local/opt/llvm/bin/
+export PATH=$PATH:/home/bin
 alias e=emacsclient -n
 alias v=vim
 alias s=subl
 alias ll=ls -lah
 export ANSIBLE_NOCOWS=1
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+GPG_TTY=$(tty)
+export GPG_TTY
