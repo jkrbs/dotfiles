@@ -3,7 +3,7 @@ path=.mail
 
 [user]
 name=Jakob Krebs
-primary_email=jakob.krebs@mailbox.tu-dresden.de;krebs@ifsr.de
+primary_email=jakob@krbs.me;jakob.krebs@mailbox.tu-dresden.de;krebs@ifsr.de
 
 [new]
 tags=new;inbox
