@@ -1,30 +1,100 @@
-source ~/.neomutt/colors
+source ~/.neomutt/themes/powerline/colors/gruvbox-powerline.neomuttrc
+source ~/.neomutt/themes/powerline/powerline.neomuttrc
 
+
+set mailcap_path = "~/.neomutt/mailcap"
 ## Storage Setup
 set header_cache = ~/.cache/neomutt/
 set message_cachedir = ~/.cache/neomutt/
 set tmpdir = ~/.cache/neomutt/
 set virtual_spoolfile
-
+set record = "+Sent"
 ## Notmuch configuration
-set nm_default_uri = "notmuch:///Users/jakob/.mail"
-virtual-mailboxes "Combined Inbox" "notmuch://?query=tag:inbox"
+set nm_default_uri = "notmuch:///home/.mail"
+virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "FSR" "notmuch://?query=to:*@ifsr.de"
+virtual-mailboxes "fsr@ifsr.de" "notmuch://?query=to:fsr@ifsr.de"
+virtual-mailboxes "FakRat" "notmuch://?query=Fakultätsrat or FR or Fakrat"
+virtual-mailboxes "Seminargruppen" "notmuch://?query=inf-*@ifsr.de or seminar@ifsr.de"
 virtual-mailboxes "All Unread Messages" "notmuch://?query=tag:unread"
 virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
 virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+virtual-mailboxes "Spam" "notmuch://?query=tag:spam"
 
-set sort = threads
-set sort_aux = reverse-last-date-received
-set menu_scroll
-set editor = vim
+macro index A "<modify-labels>+archive -unread -inbox<enter>" "Archive message"
+macro index S "<modify-labels>+spam -unread -inbox<enter>" "Mark message as spam"
+macro index c "<change-vfolder>?" "Change to vfolder overview"
+macro index \\\\ "<vfolder-from-query>" "Search mailbox"
+
+## Set of sane defaults for handling and displaying mail
+set nomark_old              # stop marking my mail as old
+set smart_wrap              # wrap words instead of cutting them half
+set reflow_text             # automatically reflow text if the mail allows it
+set menu_scroll             # scroll only a line instead of a page
+
+
+set sort_re
+set sort = reverse-threads
+set sort_aux = last-date-received
+set editor  = 'vim -c "set fo+=aw" -c "set nosmartindent" -c "set nojs" -c "set filetype=mail" -c "normal }"'
+
+set text_flowed = yes
 set timeout = "5"
 set mail_check = "10"
 set mailcap_path = ~/.neomutt/mailcap
-set date_format="%m/%d %I:%M"
-set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+
+set pager_stop              # Jesus Christ. Stop moving on to the next mail!
+
+## Displaying Options -> How should the UI look?
+#set index_format        = "%Z ⌈%D⌋  %-20.20F  ⌜%s⌟"    # Switch format of index
+set date_format         = "%d.%m.%y"                # use german date format for sanity reasons
+set folder_format       = '%N %4C %4s bytes %2F %2f'
+#set reply_regexp        = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
+set forward_quote
+set forward_format      = "Fwd: %s"
+## h e a d e r s
+ignore *
+unignore from: to: subject: Cc:
+hdr_order From: To: Cc: Date:
+set user_agent
+
+set envelope_from = yes
+set sendmail = "msmtp"
+set use_from = yes
+set realname = "Jakob Krebs"
+set reverse_name = yes
+
+## What is SPAM? Baby don't annoy me ~ annoy me, no more!
+spam "X-Spam-Status: Yes"                     "90+/SA"
+spam "X-Spam-Flag: YES"                       "90+/SA"
+spam "X-TUD-Spam-Status: Yes"                 "90+/SA"
+
+## Keep me from sending mails w/o attachments
+set abort_noattach = ask-yes
+set attach_keyword = "\\<(anhängen|angehängt|anhang|anhänge|hängt an|anhängig|attached|attachments?|anbei)\\>"
+
+
+
+set ispell = 'aspell -e -c'
+# Mail editing:
+set include             # the next 3 set's are to
+set edit_headers        # go right to vim and edit through that composition
+set autoedit            # window, rather than mutt giving me 21 questions
+set forward_quote
+set forward_format      = "Fwd: %s"
+
+## Sidebar
+source ~/.neomutt/sidebar.muttrc
+bind index,pager \CO sidebar-open
+bind index,pager \CN sidebar-next
+bind index,pager \CP sidebar-prev
+bind index,pager B sidebar-toggle-visible
+
+
+
 
 mono bold bold
 mono underline underline
@@ -63,9 +133,22 @@ bind index u half-up
 bind index D delete-message
 bind index U undelete-message
 bind index F search
-bind index R group-reply
 
-#source ~/.neomutt/gpg.rc
-#set pgp_use_gpg_agent = yes
+source ~/.neomutt/gpg.rc
+set pgp_use_gpg_agent = yes
+## Set up S/MIME
+set crypt_use_gpgme = yes
+set crypt_autosmime = yes
+set crypt_autosign = yes
+# automatically encrypt when possible
+set crypt_opportunistic_encrypt = yes
+set crypt_replyencrypt = yes
+set crypt_replysign = yes
+set crypt_replysignencrypted = yes
+# set default key and encrypt to self
+set smime_default_key = 0x6B7F2490
+set smime_self_encrypt = yes
 
 
+
+alias Jannusch Jannusch Bigge <jannusch.bigge@mailbox.tu-dresden.de>

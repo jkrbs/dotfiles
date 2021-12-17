@@ -1,16 +1,2 @@
 save-hook . +$my_account/Archives/.%(%Y)
-set spoolfile   = +INBOX
-mailboxes       = +INBOX
 
-## Basic Sending Options
-set sendmail = "/usr/local/bin/msmtp"
-set use_from = yes
-set realname = "Jakob KRebs"
-set reverse_name        # set the sender mail address to whomever it was originally sent
-set envelope_from = yes
-
-# Spam
-macro index \CS ":set confirmappend=no delete=yes\ns=$my_account/Spam\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
-
-# Archive
-macro index a ":set confirmappend=no delete=yes\n<save-message>\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"

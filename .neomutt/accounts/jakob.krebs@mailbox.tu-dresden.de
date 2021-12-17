@@ -1,4 +1,2 @@
 set my_account='tud'
 set from='jakob.krebs@mailbox.tu-dresden.de'
-set my_name='Jakob Krebs'
-source '~/.neomutt/accounts/common'
