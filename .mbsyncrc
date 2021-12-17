@@ -17,8 +17,8 @@ Path ~/.mail/tu-dresden/
 Inbox ~/.mail/tu-dresden/Inbox
 
 Channel tu-dresden
-Master :tu-dresden-remote:
-Slave :tu-dresden-local:
+Far :tu-dresden-remote:
+Near :tu-dresden-local:
 Patterns *
 Create Both
 SyncState *
@@ -42,8 +42,33 @@ Path ~/.mail/ifsr/
 Inbox ~/.mail/ifsr/Inbox
 
 Channel ifsr
-Master :ifsr-remote:
-Slave :ifsr-local:
+Far :ifsr-remote:
+Near :ifsr-local:
+Patterns *
+Create Both
+SyncState *
+
+# ---- krbs ----
+IMAPAccount krbs
+Host mail.krbs.me
+User jakob@krbs.me
+PassCmd "pass 'jakob@krbs.me' | head -1"
+SSLType IMAPS
+AuthMechs LOGIN
+# because exchange apparently can't handle parallel accesses:
+PipelineDepth 1
+
+IMAPStore krbs-remote
+Account krbs
+
+MaildirStore krbs-local
+Subfolders Verbatim
+Path ~/.mail/krbs/
+Inbox ~/.mail/krbs/Inbox
+
+Channel krbs
+Far :krbs-remote:
+Near :krbs-local:
 Patterns *
 Create Both
 SyncState *
