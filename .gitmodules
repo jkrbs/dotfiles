@@ -1,0 +1,6 @@
+[submodule ".neomutt/themes/powerline"]
+	path = .neomutt/themes/powerline
+	url = https://github.com/sheoak/neomutt-powerline-nerdfonts.git
+[submodule ".neomutt/themes/dracula"]
+	path = .neomutt/themes/dracula
+	url = https://github.com/dracula/mutt.git
