@@ -51,7 +51,6 @@
     git
     gitAndTools.delta
     gitAndTools.gitui
-    vim
 
     ## programming languages and compilers
     rustup
@@ -59,5 +58,6 @@
     cargo-watch
     iputils
 
+    util-linux
   ];
 }

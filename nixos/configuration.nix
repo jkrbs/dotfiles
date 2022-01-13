@@ -152,8 +152,7 @@
   # $ nix search wget
   environment.homeBinInPath = true;
   environment.systemPackages = with pkgs; [
-    vimHugeX # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    vim
+    vimHugeX
     wget
     xdg-desktop-portal
     xdg-desktop-portal-wlr
@@ -161,7 +160,7 @@
     spotify
     watson
     mumble
-
+    zotero
     irony-server
     youtube-dl
     element-desktop
@@ -243,7 +242,7 @@
     tdesktop
     gnupg
     pass
-
+    python39Packages.pygments
   ];
 
   programs.sway = {
@@ -259,7 +258,7 @@
       kanshi
     ];
   };
-  programs.waybar.enable = true;
+
   fonts.fonts = with pkgs; [
     font-awesome
     fira
@@ -362,7 +361,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  # networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
