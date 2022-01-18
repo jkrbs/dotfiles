@@ -1,4 +1,4 @@
-source ~/.neomutt/themes/powerline/colors/gruvbox-powerline.neomuttrc
+#source ~/.neomutt/themes/powerline/colors/gruvbox-powerline.neomuttrc
 source ~/.neomutt/themes/powerline/powerline.neomuttrc
 
 
@@ -14,7 +14,8 @@ set nm_default_uri = "notmuch:///home/.mail"
 virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
 virtual-mailboxes "FSR" "notmuch://?query=to:*@ifsr.de"
 virtual-mailboxes "fsr@ifsr.de" "notmuch://?query=to:fsr@ifsr.de"
-virtual-mailboxes "FakRat" "notmuch://?query=Fakultätsrat or FR or Fakrat"
+virtual-mailboxes "FakRat" "notmuch://?query=*Fakultätsrat* or *Fakrat*"
+virtual-mailboxes "BuS" "notmuch://?query=*bs2020* or *bs2021*"
 virtual-mailboxes "Seminargruppen" "notmuch://?query=inf-*@ifsr.de or seminar@ifsr.de"
 virtual-mailboxes "All Unread Messages" "notmuch://?query=tag:unread"
 virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
