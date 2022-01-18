@@ -18,9 +18,11 @@
       kitty
       ## automatic detection of display changes
       autorandr
+      xss-lock
     ];
     # extraSessionCommands = "feh --bg-scale /home/felix/wall.jpg";
   };
+
   services.xserver.xautolock = {
     enable = true;
     extraOptions = [ "-detectsleep" ];

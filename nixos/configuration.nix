@@ -349,6 +349,20 @@
       Restart = "always";
     };
   };
+  systemd.user.services.lock = {
+    description = "lock on sleep";
+    wantedBy = [ "sleep.target" ];
+    before = [ "sleep.target" ];
+    serviceConfig = {
+      # kanshi doesn't have an option to specifiy config file yet, so it looks
+      # at .config/kanshi/config
+      ExecStart = ''
+        ${pkgs.i3lock-fancy}/bin/i3lock-fancy -i /home/Pictures/wall.jpg
+      '';
+    };
+  };
+
+  services.emacs.defaultEditor = true;
 
   programs.gnupg.agent = {
     enable = true;
