@@ -12,9 +12,15 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+	enable = true;
+	version = 2;
+	device = "nodev";
+	useOSProber = true;
+	efiSupport = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   networking.hostName = "alundra"; # Define your hostname.
   networking.wireless.enable =
     true; # Enables wireless support via wpa_supplicant.
@@ -78,12 +84,12 @@
   # services.xserver.libinput.enable = true;
   services.udisks2.enable = true;
   programs.gnome-disks.enable = true;
-  services.openvpn = {
-    servers.vpn-krbs-me = {
-      autoStart = true;
-      config = " config /home/openvpn/alundra.ovpn";
-    };
-  };
+ # services.openvpn = {
+ #   servers.vpn-krbs-me = {
+ #     autoStart = true;
+ #     config = " config /home/openvpn/alundra.ovpn";
+ #   };
+ # };
   users.users.jakob = {
     isNormalUser = true;
     createHome = true;
@@ -119,7 +125,7 @@
     enable = true;
     displayManager = {
       sddm = { enable = true; };
-      defaultSession = "sway";
+      defaultSession = "none+i3";
     };
 
     desktopManager.plasma5.enable = true;
@@ -238,11 +244,13 @@
     nixfmt
     sublime3
     firefox
-    firefox-wayland
+    chromium
+    restic
     tdesktop
     gnupg
     pass
     python39Packages.pygments
+    ntfs3g
   ];
 
   programs.sway = {
@@ -252,7 +260,6 @@
       swaylock
       swayidle
       waybar
-      restic
       alacritty
       dmenu
       kanshi

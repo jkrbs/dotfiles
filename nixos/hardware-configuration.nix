@@ -7,23 +7,33 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-  boot.initrd.luks.devices.cryptlvm.device = "/dev/disk/by-uuid/67e3aaef-3637-48ac-b51c-db4fe058acb5";
+  boot.initrd.luks.devices.cryptlvm.device = "/dev/disk/by-uuid/749330ef-5793-4a4e-a456-d8127ea7c5e1";
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c30bfa9c-1c56-4073-83df-ee6d5af7604b";
+    { device = "/dev/disk/by-uuid/7b3e1a00-8b35-43e4-a100-a8c28216a88c";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DAF0-2B31";
+    { device = "/dev/disk/by-uuid/9975-178D";
       fsType = "vfat";
     };
+  fileSystems."/shared" =
+    { device = "/dev/disk/by-uuid/1EE2EEA449E49442";
+      fsType = "ntfs";
+    };
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/3A89-78AC";
+      fsType = "vfat";
+    };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/0382a99a-2206-4597-9075-bfca3e050456"; }
+    [ { device = "/dev/disk/by-uuid/b18a7d94-96ad-4c9d-9194-8770e4f22e3f"; }
     ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
