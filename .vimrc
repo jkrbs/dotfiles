@@ -86,7 +86,6 @@ set hidden
 let g:tex_flavor='latex'
 " Optics
 colorscheme gruvbox
-#set background=dark    " Setting dark mode
 
 set number
 set relativenumber

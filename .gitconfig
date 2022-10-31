@@ -3,3 +3,5 @@
 	name = Jakob Krebs
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
